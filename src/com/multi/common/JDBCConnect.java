@@ -1,7 +1,5 @@
 package com.multi.common;
 
-import com.multi.model.dao.MemberDAO;
-
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
@@ -12,7 +10,7 @@ public class JDBCConnect {
         try {
             if (conn == null || conn.isClosed()) {
                 Properties prop = new Properties();
-                prop.load(MemberDAO.class.getResourceAsStream("/driver.properties"));
+                prop.load(JDBCConnect.class.getResourceAsStream("/driver.properties"));
                 System.out.println(prop);
 
                 String url = prop.getProperty("url");
