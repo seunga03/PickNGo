@@ -10,6 +10,7 @@ public class MainMenu {
     private static Scanner sc = new Scanner(System.in);
 
     public void mainMenu() {
+
         int choice = 0;
 
         do {
@@ -38,5 +39,10 @@ public class MainMenu {
         } while (true);  // 무한 루프
 
     }
+
+
+    
+
+
 
 }
