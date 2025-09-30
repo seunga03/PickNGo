@@ -22,7 +22,7 @@ public class MainMenu {
 
         do {
             try {
-                System.out.println("\n1.전체목록 조회");
+                System.out.println("\n1. 전체목록 조회");
                 System.out.println("2. 검색으로 조회");
                 System.out.println("3. 권역별 조회");
                 System.out.println("4. 인기순으로 조회");
@@ -43,9 +43,11 @@ public class MainMenu {
                         System.out.println("검색으로 조회");
                         searchController.selectBySearch(inputSearch());
                         break;
+                    case 3:
+                        System.out.println("권역별 조회");
+                        searchController.selectByDistrict(inputDistrict());
                     case 5:
                         System.out.println("마이페이지로");
-                        /*** 구현 필요 ***/
                         myPage.myInfo();
                         break;
                     case 9:
@@ -62,6 +64,26 @@ public class MainMenu {
                 sc.nextLine();  // 잘못된 입력을 버퍼에서 제거
             }
         } while (true);  // 무한 루프
+
+    }
+
+    private int inputDistrict() {
+
+        System.out.println("수도권:1, 충청권:2, 경상권:3, 전라권:4, 강원권:5, 제주권:6");
+        System.out.print("조회를 원하는 권역 번호를 입력하세요: ");
+        while (true) {
+            try {
+                int districtNo = sc.nextInt();
+                if (districtNo >= 1 && districtNo <= 6) {
+                    return districtNo;  // 유효한 입력인 경우 반환
+                } else {
+                    System.out.print("잘못된 입력입니다. 1에서 6 사이의 숫자를 입력하세요: ");
+                }
+            } catch (InputMismatchException e) {
+                System.out.print("유효한 숫자를 입력해 주세요: ");
+                sc.next();  // 잘못된 입력을 버퍼에서 제거
+            }
+        }
 
     }
 
@@ -102,7 +124,7 @@ public class MainMenu {
             //UI 요소
 
             System.out.println("\n--- Page " + (currentPage + 1) + " of " + totalPages + " ---");
-            System.out.print("\n[p]revious, [n]ext, [h]ome | 상세페이지 보려면 번호 입력: ");
+            System.out.print("\n[p]revious, [n]ext, [h]ome | 여행지 상세정보는 번호 입력: ");
 
             String command = sc.next();
 
@@ -136,6 +158,10 @@ public class MainMenu {
                             case "f":
 
                             case "c":
+
+                            default:
+                                System.out.println(">> 잘못된 명령어입니다. b, h, f, c 중에서 입력해주세요.");
+                                break;
 
                         }
 
