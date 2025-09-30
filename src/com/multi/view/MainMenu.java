@@ -5,8 +5,8 @@ import com.multi.controller.SearchController;
 import com.multi.controller.TravelDetailController;
 import com.multi.controller.CommentsController;
 import com.multi.model.dto.CommentsDTO;
-import com.multi.model.dto.LikesDTO;
 import com.multi.model.dto.TravelDTO;
+import com.multi.view.InputView.*;
 import com.multi.model.dto.tmddk.User;
 import com.multi.service.UserSession;
 
@@ -17,10 +17,11 @@ import java.util.Scanner;
 public class MainMenu {
 
     private SearchController searchController = new SearchController();
+
+    private InputView inputView = new InputView();
     private TravelDetailController travelDetailController = new TravelDetailController();
 
     private CommentsController commentController = new CommentsController();
-    private LikeController likeController = new LikeController();
 
 
     private static MyPage myPage = new MyPage();
@@ -54,17 +55,19 @@ public class MainMenu {
 
                     case 2:
                         System.out.println("검색으로 조회");
-                        searchController.selectBySearch(inputSearch());
+                        searchController.selectBySearch(inputView.inputSearch());
                         break;
                     case 3:
                         System.out.println("권역별 조회");
-                        searchController.selectByDistrict(inputDistrict());
-                  //  case 7:
-                  //      commentController.insertComment(inputComment());
-                  //      break;
+                        searchController.selectByDistrict(inputView.inputDistrict());
+
+                    case 7:
+                        commentController.insertComment(inputComment());
+                        break;
                     case 8:
                         commentController.selectAllComment(selectComment());
                         break;
+
                     case 5:
                         System.out.println("마이페이지로");
                         myPage.myInfo();
