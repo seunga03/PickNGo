@@ -24,4 +24,20 @@ public class SearchController {
 
 
     }
+
+    public void selectAll() {
+        MainMenu mainMenu = new MainMenu();
+        ArrayList<TravelDTO> list = searchService.selectAll();
+
+
+            mainMenu.displayTravel(list);
+
+    }
+
+    public void selectByDistrict(int district_no) {
+        MainMenu mainMenu = new MainMenu();
+        ArrayList<TravelDTO> list = searchService.selectByDistrict(district_no);
+
+            mainMenu.displayTravel(list);
+    }
 }
