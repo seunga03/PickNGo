@@ -13,15 +13,22 @@ public class AdminView {
     AdminController adminController = new AdminController();
 
     public void loginView() {
-
-
-        System.out.print("아이디: ");
-        String admin_id = sc.next();
-        System.out.print("비밀번호: ");
-        String admin_pw = sc.next();
+        String admin_id = "";
+        String admin_pw = "";
+        do {
+            displayMessage("아이디(10자 이내): ");
+            admin_id = sc.next();
+            displayMessage("비밀번호(30자 이내): ");
+            admin_pw = sc.next();
+            if (checkIdPwLength(admin_id, admin_pw)) break;
+        } while (true);
         adminController.checkAdmin(admin_id, admin_pw);
 
 
+    }
+
+    private boolean checkIdPwLength(String adminId, String adminPw) {
+        return adminId.length() <= 10 && adminPw.length() <= 30;
     }
 
     public void mainMenu() {   //관리자 메인 메뉴
@@ -40,12 +47,12 @@ public class AdminView {
                     """);
 
             while (true) {
-                displayMessage("번호를 입력해주세요.");
+                displayMessageLn("번호를 입력해주세요.");
                 try {
                     choice = sc.nextInt();
                     break;
                 } catch (InputMismatchException e) {
-                    displayMessage("유효한 번호를 입력해주세요.");
+                    displayMessageLn("유효한 번호를 입력해주세요.");
                     sc.next();
                 }
             }
@@ -66,7 +73,7 @@ public class AdminView {
                 case 9:
                     return;
                 default:
-                    displayMessage("유효한 숫자를 입력해주세요.");
+                    displayMessageLn("유효한 숫자를 입력해주세요.");
             }
 
         } while (true);
@@ -76,13 +83,19 @@ public class AdminView {
 
     private long inputNo() {
         long no = 0;
+        displayMessageLn("메인 메뉴로 이동하려면 q , 작업 진행하려면 n");
+
+        if (sc.next().equals("q")) {
+            mainMenu();
+            return no;
+        }
         while (true) {
             System.out.print("관광지 일련번호를 입력하세요:");
             try {
-                no  = sc.nextInt();
+                no = sc.nextInt();
                 break;
             } catch (InputMismatchException e) {
-                displayMessage("유효한 일련번호를 입력해주세요.");
+                displayMessageLn("유효한 일련번호를 입력해주세요.");
                 sc.next();
             }
         }
@@ -92,18 +105,24 @@ public class AdminView {
     private Travel updateTravel() {
         Travel travel = new Travel();
 
+        displayMessageLn("메인 메뉴로 이동하려면 q , 작업 진행하려면 n");
+
+        if (sc.next().equals("q")) {
+            mainMenu();
+            return null;
+        }
         travel.setNo(inputNo());
-        System.out.print("새로운 권역을 입력하세요.:");
+        displayMessage("새로운 권역을 입력하세요.:");
         String district = sc.next();
         sc.nextLine();
-        System.out.print("새로운 관광지명을 입력하세요.:");
+        displayMessage("새로운 관광지명을 입력하세요.:");
         String title = sc.nextLine();
-        System.out.print("새로운 전화 번호를 입력하세요.:");
+        displayMessage("새로운 전화 번호를 입력하세요.:");
         String phone = sc.next();
-        System.out.print("새로운 주소를 입력하세요.:");
+        displayMessage("새로운 주소를 입력하세요.:");
         String address = sc.next();
         sc.nextLine();
-        System.out.print("새로운 관광지 설명을 입력하세요.:");
+        displayMessage("새로운 관광지 설명을 입력하세요.:");
         String description = sc.nextLine();
 
         travel.setDistrict(district);
@@ -116,8 +135,12 @@ public class AdminView {
     }
 
 
-    public void displayMessage(String message) {
+    public void displayMessageLn(String message) {
         System.out.println(message);
+    }
+
+    public void displayMessage(String message) {
+        System.out.print(message);
     }
 
     public void displayTravelList(ArrayList<Travel> list) {

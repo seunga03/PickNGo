@@ -66,11 +66,19 @@ public class AdminController {
     public void insertLotOfTravel() {
 
         AdminView adminView = new AdminView();
-        int result = adminService.insertLotOfTravel();
-        if(result>0){
-            adminView.displayMessage("대량 삽입 성공!");
-        }else{
-            adminView.displayMessage("대량 삽입 실패!");
+        try{
+            int result = adminService.insertLotOfTravel();
+            if(result>0){
+                adminView.displayMessage("대량 삽입 성공!");
+            }else{
+                adminView.displayMessage("대량 삽입 실패!");
+            }
+
+        }catch(NullPointerException e){
+            adminView.displayMessageLn("파일 스트림 문제. 관리자에게 문의하세요.");
+        }
+        catch(RuntimeException e) {
+            adminView.displayMessageLn("중복 키 존재. 관리자에게 문의하세요.");
         }
 
     }
