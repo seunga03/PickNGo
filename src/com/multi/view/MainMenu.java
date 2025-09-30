@@ -67,14 +67,8 @@ public class MainMenu {
 
                         searchController.selectByDistrict(inputView.inputDistrict());
 
-                    case 7:
-                        commentController.insertComment(inputComment());
-                        break;
 
-                        searchController.selectByDistrict(inputDistrict());
-                  //  case 7:
-                  //      commentController.insertComment(inputComment());
-                  //      break;
+
 
                     case 8:
                         commentController.selectAllComment(selectComment());
@@ -106,7 +100,7 @@ public class MainMenu {
 
         System.out.println("댓글을 입력하세요 >>");
         System.out.println("관광지 일련번호 : " + no + "입니다");
-      //  comment.setNo((long) sc.nextInt());
+        //  comment.setNo((long) sc.nextInt());
         comment.setNo((long) no);
         User me = UserSession.getUser();
         System.out.println("사용자ID 입력 : " + me.getUserId());
@@ -144,88 +138,5 @@ public class MainMenu {
     }
 
 
-    public void displaySuccess(String message) {
-        System.out.println("서비스 요청결과  : " + message);
-    }
-
-
-
-
-
-            }
-
-
-            //UI 요소
-
-//            int choice = sc.nextInt();
-//            switch (choice) {
-//                case 1:
-//                    System.out.println("댓글 추가하기");
-//                    commentController.insertComment(inputComment());
-//                    break;    // 댓글 컨트롤러 연결 필요
-//                case 2:
-//                    System.out.println("댓글 조회하기");
-//                    commentController.selectAllComment(selectComment());
-//                    // 댓글 컨트롤러 연결 필요
-//                    break;
-//                case 5:
-//                    System.out.println("즐겨찾기에 추가하기");
-//                    // 즐겨찾기 컨트롤러 연결 필요
-//                    break;
-//                case 9:
-//                    System.out.println("조회된 여행지 리스트로 돌아가기");
-//                    // 댓글 컨트롤러 연결 필요
-//                    break;
-//
-//            }
-            System.out.println("\n--- Page " + (currentPage + 1) + " of " + totalPages + " ---");
-            System.out.print("\n[p]revious, [n]ext, [h]ome | 여행지 상세정보는 번호 입력: ");
-
-            String command = sc.next();
-
-            try {
-                int travelNo = Integer.parseInt(command);
-
-                // 2. 숫자로 변환 성공 시, 상세 정보 조회 로직 실행
-                TravelDTO selectedTravel = travelDetailController.showDetail(travelNo);
-
-                if (selectedTravel != null) {
-                    // 상세 정보를 출력하는 메소드 호출
-                    displayTravelDetail(selectedTravel);
-
-
-                    boolean inDetailView = true;
-                    while (inDetailView) {
-                        System.out.println("\n");
-                        System.out.println("목록으로 돌아가기: b / 메인으로 돌아가기: h ");
-                        System.out.println("즐겨찾기에 추가: f / 댓글 등록: c / 댓글 조회 v");
-                        System.out.print("명령어 입력: ");
-                        String detailCommand = sc.next();
-
-                        switch (detailCommand.toLowerCase()) {
-                            case "b":
-                                inDetailView = false; // 상세보기 루프 종료
-                                break;
-                            case "h":
-                                System.out.println(">> 메인 메뉴로 돌아갑니다.");
-                                return;
-
-                            case "f":
-                                likeController.insertLike(insertLike(travelNo));
-                                break;
-                            case "c":
-                                commentController.insertComment(inputComment(travelNo));
-                                break;
-                            case "v":
-                                commentController.selectAllComment((long)travelNo);
-                                break;
-                            default:
-                                System.out.println(">> 잘못된 명령어입니다. b, h, f, c 중에서 입력해주세요.");
-                                break;
-
-                        }
-
-
 
 }
-

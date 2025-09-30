@@ -5,6 +5,7 @@ import com.multi.model.dto.LikesDTO;
 import com.multi.model.dto.TravelDTO;
 import com.multi.model.dto.tmddk.Like;
 import com.multi.service.LikeService;
+import com.multi.view.GeneralView;
 import com.multi.view.MainMenu;
 
 import java.util.ArrayList;
@@ -37,7 +38,8 @@ public class LikeController {
     public void insertLike(LikesDTO like) {
         int result = likeService.insertLike(like);
         if(result > 0) {
-            new MainMenu().displaySuccess("즐겨찾기등록성공");
+             new GeneralView().displayMessage("즐겨찾기 저장 성공!");
+
         }
     }
 
