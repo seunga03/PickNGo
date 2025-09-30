@@ -14,7 +14,9 @@ public class MainMenu {
 
     private SearchController searchController = new SearchController();
     private TravelDetailController travelDetailController = new TravelDetailController();
+
     private CommentsController commentController = new CommentsController();
+
 
     private static MyPage myPage = new MyPage();
 
@@ -52,12 +54,14 @@ public class MainMenu {
                     case 3:
                         System.out.println("권역별 조회");
                         searchController.selectByDistrict(inputDistrict());
+
                     case 7:
                         commentController.insertComment(inputComment());
                         break;
                     case 8:
                         commentController.selectAllComment(selectComment());
                         break;
+
                     case 5:
                         System.out.println("마이페이지로");
                         myPage.myInfo();
@@ -276,7 +280,7 @@ public class MainMenu {
     public void displayNoData() {
     }
 
-    public void displayTravelDetail(TravelDTO t) {
+    public static void displayTravelDetail(TravelDTO t) {
         System.out.println("조회된 여행지는 다음과 같습니다.");
         System.out.println();
 
