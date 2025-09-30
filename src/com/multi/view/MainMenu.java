@@ -141,4 +141,24 @@ public class MainMenu {
     public void displayNoData() {
     }
 
+    public void displayTravelDetail(TravelDTO t) {
+        System.out.println("조회된 여행지는 다음과 같습니다.");
+        System.out.println();
+
+        System.out.print("(no: " + t.getNo() + ") ");
+        System.out.println("[" + t.getDistrict() + "] " + t.getTitle());
+        System.out.println("전화번호: " + t.getPhone());
+        System.out.println("주소: " + t.getAddress());
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+        printWithWrap(t.getDescription(), 92);
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+    }
+
+    public static void printWithWrap(String text, int lineLength) {
+        for (int i = 0; i < text.length(); i += lineLength) {
+            int end = Math.min(i + lineLength, text.length());
+            System.out.println(text.substring(i, end));
+        }
+    }
+
 }
