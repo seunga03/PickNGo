@@ -47,7 +47,7 @@ public class AdminView {
                     """);
 
             while (true) {
-                displayMessageLn("번호를 입력해주세요.");
+                displayMessageLn("번호를 입력해주세요.:");
                 try {
                     choice = sc.nextInt();
                     break;
@@ -111,7 +111,9 @@ public class AdminView {
             mainMenu();
             return null;
         }
-        travel.setNo(inputNo());
+        System.out.print("관광지 일련번호를 입력하세요.:");
+        int no = sc.nextInt();
+        travel.setNo(no);
         displayMessage("새로운 권역을 입력하세요.:");
         String district = sc.next();
         sc.nextLine();
