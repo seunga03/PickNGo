@@ -2,6 +2,8 @@ package com.multi.view;
 
 import com.multi.controller.SearchController;
 import com.multi.controller.TravelDetailController;
+import com.multi.controller.CommentsController;
+import com.multi.model.dto.CommentsDTO;
 import com.multi.model.dto.TravelDTO;
 
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ public class MainMenu {
 
     private SearchController searchController = new SearchController();
     private TravelDetailController travelDetailController = new TravelDetailController();
+    private CommentsController commentController = new CommentsController();
+
     private static MyPage myPage = new MyPage();
 
     private static Scanner sc = new Scanner(System.in);
@@ -27,6 +31,8 @@ public class MainMenu {
                 System.out.println("3. 권역별 조회");
                 System.out.println("4. 인기순으로 조회");
                 System.out.println("5. 마이페이지");
+                // System.out.println("7. 댓글등록");
+                System.out.println("8. 댓글조회");
                 System.out.println("9.프로그램 끝내기 \n");
                 System.out.print("번호선택 : ");
 
@@ -46,6 +52,12 @@ public class MainMenu {
                     case 3:
                         System.out.println("권역별 조회");
                         searchController.selectByDistrict(inputDistrict());
+                    case 7:
+                        commentController.insertComment(inputComment());
+                        break;
+                    case 8:
+                        commentController.selectAllComment(selectComment());
+                        break;
                     case 5:
                         System.out.println("마이페이지로");
                         myPage.myInfo();
@@ -64,6 +76,30 @@ public class MainMenu {
                 sc.nextLine();  // 잘못된 입력을 버퍼에서 제거
             }
         } while (true);  // 무한 루프
+
+    }
+
+    private CommentsDTO inputComment() {
+
+        CommentsDTO comment = new CommentsDTO();
+
+        System.out.println("댓글을 입력하세요 >>");
+        System.out.println("관광지 일련번호 : ");
+        comment.setNo((long) sc.nextInt());
+        System.out.println("사용자ID 입력 : ");
+        comment.setUser_Id(sc.next());
+        System.out.println("댓글 내용 입력 : ");
+        sc.nextLine();
+        comment.setContent(sc.nextLine());
+
+        return comment;
+    }
+
+    private long selectComment() {
+
+        System.out.println("조회할 댓글의 관광지 일련번호를 입력하세요 >>");
+        System.out.println("관광지 일련번호 : ");
+        return (long) sc.nextInt();
 
     }
 
@@ -92,6 +128,9 @@ public class MainMenu {
         return sc.next();  // 사용자로부터 입력 받기
     }
 
+    public void displaySuccess(String message) {
+        System.out.println("서비스 요청결과  : " + message);
+    }
 
     public void displayTravel(ArrayList<TravelDTO> dto) {
 
@@ -123,6 +162,27 @@ public class MainMenu {
 
             //UI 요소
 
+//            int choice = sc.nextInt();
+//            switch (choice) {
+//                case 1:
+//                    System.out.println("댓글 추가하기");
+//                    commentController.insertComment(inputComment());
+//                    break;    // 댓글 컨트롤러 연결 필요
+//                case 2:
+//                    System.out.println("댓글 조회하기");
+//                    commentController.selectAllComment(selectComment());
+//                    // 댓글 컨트롤러 연결 필요
+//                    break;
+//                case 5:
+//                    System.out.println("즐겨찾기에 추가하기");
+//                    // 즐겨찾기 컨트롤러 연결 필요
+//                    break;
+//                case 9:
+//                    System.out.println("조회된 여행지 리스트로 돌아가기");
+//                    // 댓글 컨트롤러 연결 필요
+//                    break;
+//
+//            }
             System.out.println("\n--- Page " + (currentPage + 1) + " of " + totalPages + " ---");
             System.out.print("\n[p]revious, [n]ext, [h]ome | 여행지 상세정보는 번호 입력: ");
 
@@ -158,7 +218,8 @@ public class MainMenu {
                             case "f":
 
                             case "c":
-
+                                commentController.insertComment(inputComment());
+                                break;
                             default:
                                 System.out.println(">> 잘못된 명령어입니다. b, h, f, c 중에서 입력해주세요.");
                                 break;
@@ -211,6 +272,7 @@ public class MainMenu {
 
     }
 
+
     public void displayNoData() {
     }
 
@@ -233,4 +295,6 @@ public class MainMenu {
             System.out.println(text.substring(i, end));
         }
     }
+
 }
+
