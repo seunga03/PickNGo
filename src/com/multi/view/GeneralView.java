@@ -42,8 +42,8 @@ public class GeneralView {
 //        String password = scanner.nextLine();
         String password = scanner.nextLine().trim();
 
-        boolean ok = generalController.checkGeneral(userId, password);
-        if (ok) {
+        User user = generalController.checkGeneral(userId, password);
+        if (user != null) {
             displayMessage("로그인 성공!");
             mainMenu.mainMenu();
         } else {
