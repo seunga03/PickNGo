@@ -47,7 +47,7 @@ public class AdminView {
                     """);
 
             while (true) {
-                displayMessageLn("번호를 입력해주세요.:");
+                displayMessage("번호를 입력해주세요.:");
                 try {
                     choice = sc.nextInt();
                     break;
