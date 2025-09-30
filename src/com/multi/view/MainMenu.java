@@ -1,5 +1,7 @@
 package com.multi.view;
 
+import com.multi.controller.SearchController;
+import com.multi.controller.TravelDetailController;
 import com.multi.controller.CommentsController;
 import com.multi.model.dto.CommentsDTO;
 import com.multi.model.dto.TravelDTO;
@@ -11,8 +13,11 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    private static Scanner sc = new Scanner(System.in);
+    private SearchController searchController = new SearchController();
+    private TravelDetailController travelDetailController = new TravelDetailController();
     private CommentsController commentController = new CommentsController();
+
+    private static Scanner sc = new Scanner(System.in);
 
     public void mainMenu() {
 
@@ -33,15 +38,22 @@ public class MainMenu {
                 choice = sc.nextInt();  // 사용자로부터 입력 받기
 
                 switch (choice){
+                    case 2:
+                        System.out.println("검색으로 조회");
+                        searchController.selectBySearch(inputSearch());
+                        break;
                     case 7:
                         commentController.insertComment(inputComment());
                         break;
                     case 8:
                         commentController.selectAllComment(selectComment());
                         break;
-                    default:
-                        System.out.println("번호를 잘못입력하였습니다.");
-                        break;
+                    case 9:
+                        System.out.println("정말로 끝내시겠습니까??(y/n)");
+                        if ('y' == sc.next().toLowerCase().charAt(0)) {
+                            return;  // 프로그램 종료
+
+                        }
                 }
 
             } catch (InputMismatchException e) {
@@ -76,6 +88,10 @@ public class MainMenu {
         return (long)sc.nextInt();
 
     }
+    private String inputSearch() {
+        System.out.print("검색어를 입력하세요: ");
+        return sc.next();  // 사용자로부터 입력 받기
+    }
 
     public void displaySuccess(String message) {
         System.out.println("서비스 요청결과  : " + message);
@@ -88,6 +104,38 @@ public class MainMenu {
             System.out.println(t);
         }
 
+        System.out.print("여행지를 자세히 보고 싶으면 no값을 입력해 주세요: ");
+        int no = sc.nextInt();
+        travelDetailController.showDetail(no);
+
+        System.out.println();
+        System.out.println("1. 댓글 추가하기");
+        System.out.println("2. 댓글 조회하기");
+        System.out.println("5. 즐겨찾기에 추가하기");
+        System.out.println("9. 조회된 여행지 리스트로 돌아가기");
+        System.out.println();
+
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                System.out.println("댓글 추가하기");
+                    // 댓글 컨트롤러 연결 필요
+                break;
+            case 2:
+                System.out.println("댓글 조회하기");
+                    // 댓글 컨트롤러 연결 필요
+                break;
+            case 5:
+                System.out.println("즐겨찾기에 추가하기");
+                    // 즐겨찾기 컨트롤러 연결 필요
+                break;
+            case 9:
+                System.out.println("조회된 여행지 리스트로 돌아가기");
+                    // 댓글 컨트롤러 연결 필요
+                break;
+
+
+        }
     }
 
     public void displayNoData() {
