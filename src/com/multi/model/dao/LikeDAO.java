@@ -78,4 +78,28 @@ public class LikeDAO {
         }
         return result;
     }
+
+    public boolean isLikeExists(Connection conn, LikesDTO like) {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT COUNT(*) FROM LIKES WHERE USER_ID = ? AND _NO = ?";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, like.getUser_Id());
+            pstmt.setLong(2, like.getNo());
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(rs);
+            close(pstmt);
+        }
+        return false;
+    }
+
 }
