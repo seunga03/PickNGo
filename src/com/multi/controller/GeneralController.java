@@ -8,7 +8,7 @@ public class GeneralController {
 
     private GeneralService generalService = new GeneralService();
 
-    public boolean checkGeneral(String userId, String password) {
+    public User checkGeneral(String userId, String password) {
         return generalService.checkGeneral(userId, password);
     }
 

@@ -15,21 +15,13 @@ public class GeneralService {
         userDAO = new UserDAO();
     }
 
-    public boolean checkGeneral(String userId, String password) {
+    public User checkGeneral(String userId, String password) {
         Connection conn = null;
         try {
             conn = getConnection();
-            boolean result = userDAO.checkGeneral(conn, userId, password);
-            // SELECT면 트랜잭션 처리 불필요 (남겨두고 싶다면 조건만 바로잡기)
-            // if (result) commit(conn); else rollback(conn);
-
-//            if (result = true) {
-//                commit(conn);
-//            } else {
-//                rollback(conn);
-//            }
-
-            return result;
+            User user = userDAO.checkGeneral(conn, userId, password);
+            UserSession.setUser(user);
+            return user;
         } finally {
             close(conn);
         }

@@ -6,7 +6,6 @@ import com.multi.controller.CommentsController;
 import com.multi.model.dto.CommentsDTO;
 import com.multi.model.dto.TravelDTO;
 
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -16,6 +15,8 @@ public class MainMenu {
     private SearchController searchController = new SearchController();
     private TravelDetailController travelDetailController = new TravelDetailController();
     private CommentsController commentController = new CommentsController();
+
+    private static MyPage myPage = new MyPage();
 
     private static Scanner sc = new Scanner(System.in);
 
@@ -56,6 +57,10 @@ public class MainMenu {
                         break;
                     case 8:
                         commentController.selectAllComment(selectComment());
+                        break;
+                    case 5:
+                        System.out.println("마이페이지로");
+                        myPage.myInfo();
                         break;
                     case 9:
                         System.out.println("정말로 끝내시겠습니까??(y/n)");
@@ -157,27 +162,27 @@ public class MainMenu {
 
             //UI 요소
 
-            int choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    System.out.println("댓글 추가하기");
-                    commentController.insertComment(inputComment());
-                    break;    // 댓글 컨트롤러 연결 필요
-                case 2:
-                    System.out.println("댓글 조회하기");
-                    commentController.selectAllComment(selectComment());
-                    // 댓글 컨트롤러 연결 필요
-                    break;
-                case 5:
-                    System.out.println("즐겨찾기에 추가하기");
-                    // 즐겨찾기 컨트롤러 연결 필요
-                    break;
-                case 9:
-                    System.out.println("조회된 여행지 리스트로 돌아가기");
-                    // 댓글 컨트롤러 연결 필요
-                    break;
-
-            }
+//            int choice = sc.nextInt();
+//            switch (choice) {
+//                case 1:
+//                    System.out.println("댓글 추가하기");
+//                    commentController.insertComment(inputComment());
+//                    break;    // 댓글 컨트롤러 연결 필요
+//                case 2:
+//                    System.out.println("댓글 조회하기");
+//                    commentController.selectAllComment(selectComment());
+//                    // 댓글 컨트롤러 연결 필요
+//                    break;
+//                case 5:
+//                    System.out.println("즐겨찾기에 추가하기");
+//                    // 즐겨찾기 컨트롤러 연결 필요
+//                    break;
+//                case 9:
+//                    System.out.println("조회된 여행지 리스트로 돌아가기");
+//                    // 댓글 컨트롤러 연결 필요
+//                    break;
+//
+//            }
             System.out.println("\n--- Page " + (currentPage + 1) + " of " + totalPages + " ---");
             System.out.print("\n[p]revious, [n]ext, [h]ome | 여행지 상세정보는 번호 입력: ");
 
