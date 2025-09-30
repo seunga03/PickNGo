@@ -5,6 +5,7 @@ import com.multi.controller.TravelDetailController;
 import com.multi.controller.CommentsController;
 import com.multi.model.dto.CommentsDTO;
 import com.multi.model.dto.TravelDTO;
+import com.multi.view.InputView.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -13,6 +14,8 @@ import java.util.Scanner;
 public class MainMenu {
 
     private SearchController searchController = new SearchController();
+
+    private InputView inputView = new InputView();
     private TravelDetailController travelDetailController = new TravelDetailController();
 
     private CommentsController commentController = new CommentsController();
@@ -49,11 +52,11 @@ public class MainMenu {
 
                     case 2:
                         System.out.println("검색으로 조회");
-                        searchController.selectBySearch(inputSearch());
+                        searchController.selectBySearch(inputView.inputSearch());
                         break;
                     case 3:
                         System.out.println("권역별 조회");
-                        searchController.selectByDistrict(inputDistrict());
+                        searchController.selectByDistrict(inputView.inputDistrict());
 
                     case 7:
                         commentController.insertComment(inputComment());
