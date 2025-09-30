@@ -4,10 +4,9 @@ import com.multi.controller.SearchController;
 import com.multi.controller.TravelDetailController;
 import com.multi.controller.CommentsController;
 import com.multi.model.dto.CommentsDTO;
-import com.multi.model.dto.TravelDTO;
+
 import com.multi.view.InputView.*;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
