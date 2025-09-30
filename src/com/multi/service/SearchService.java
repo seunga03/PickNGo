@@ -43,4 +43,12 @@ public class SearchService {
         return t;
     }
 
+    public ArrayList<TravelDTO> selectByDistrict(int district_no) {
+
+        Connection conn = getConnection();
+        ArrayList<TravelDTO> list = travelDAO.selectByDistrict(conn,district_no);
+        close(conn);
+
+        return list;
+    }
 }
