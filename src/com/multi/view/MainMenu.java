@@ -1,6 +1,7 @@
 package com.multi.view;
 
 import com.multi.controller.SearchController;
+import com.multi.controller.TravelDetailController;
 import com.multi.model.dto.TravelDTO;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 public class MainMenu {
 
     private SearchController searchController = new SearchController();
+    private TravelDetailController travelDetailController = new TravelDetailController();
     private static Scanner sc = new Scanner(System.in);
 
     public void mainMenu() {
@@ -64,8 +66,60 @@ public class MainMenu {
             System.out.println(t);
         }
 
+        System.out.print("여행지를 자세히 보고 싶으면 no값을 입력해 주세요: ");
+        int no = sc.nextInt();
+        travelDetailController.showDetail(no);
+
+        System.out.println();
+        System.out.println("1. 댓글 추가하기");
+        System.out.println("2. 댓글 조회하기");
+        System.out.println("5. 즐겨찾기에 추가하기");
+        System.out.println("9. 조회된 여행지 리스트로 돌아가기");
+        System.out.println();
+
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                System.out.println("댓글 추가하기");
+                    // 댓글 컨트롤러 연결 필요
+                break;
+            case 2:
+                System.out.println("댓글 조회하기");
+                    // 댓글 컨트롤러 연결 필요
+                break;
+            case 5:
+                System.out.println("즐겨찾기에 추가하기");
+                    // 즐겨찾기 컨트롤러 연결 필요
+                break;
+            case 9:
+                System.out.println("조회된 여행지 리스트로 돌아가기");
+                    // 댓글 컨트롤러 연결 필요
+                break;
+
+
+        }
     }
 
     public void displayNoData() {
+    }
+
+    public void displayTravelDetail(TravelDTO t) {
+        System.out.println("조회된 여행지는 다음과 같습니다.");
+        System.out.println();
+
+        System.out.print("(no: " + t.getNo() + ") ");
+        System.out.println("[" + t.getDistrict() + "] " + t.getTitle());
+        System.out.println("전화번호: " + t.getPhone());
+        System.out.println("주소: " + t.getAddress());
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+        printWithWrap(t.getDescription(), 92);
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+    }
+
+    public static void printWithWrap(String text, int lineLength) {
+        for (int i = 0; i < text.length(); i += lineLength) {
+            int end = Math.min(i + lineLength, text.length());
+            System.out.println(text.substring(i, end));
+        }
     }
 }
