@@ -30,7 +30,7 @@ public class MainMenu {
                 System.out.println("3. 권역별 조회");
                 System.out.println("4. 인기순으로 조회");
                 System.out.println("5. 마이페이지");
-                System.out.println("7. 댓글등록");
+               // System.out.println("7. 댓글등록");
                 System.out.println("8. 댓글조회");
                 System.out.println("9.프로그램 끝내기 \n");
                 System.out.print("번호선택 : ");
@@ -119,10 +119,11 @@ public class MainMenu {
         switch (choice) {
             case 1:
                 System.out.println("댓글 추가하기");
-                    // 댓글 컨트롤러 연결 필요
-                break;
+                commentController.insertComment(inputComment());
+                break;    // 댓글 컨트롤러 연결 필요
             case 2:
                 System.out.println("댓글 조회하기");
+                commentController.selectAllComment(selectComment());
                     // 댓글 컨트롤러 연결 필요
                 break;
             case 5:
