@@ -42,4 +42,36 @@ public class AdminController {
         }
 
     }
+
+    public void updateTravel(Travel travel) {
+        AdminView adminView = new AdminView();
+        int result = adminService.updateTravel(travel);
+        if(result>0){
+            adminView.displayMessage("업데이트 성공!");
+        }else{
+            adminView.displayMessage("업데이트 실패!");
+        }
+    }
+
+    public void deleteTravel(long no) {
+        AdminView adminView = new AdminView();
+        int result = adminService.deleteTravel(no);
+        if(result>0){
+            adminView.displayMessage("삭제 성공!");
+        }else{
+            adminView.displayMessage("삭제 실패!");
+        }
+    }
+
+    public void insertLotOfTravel() {
+
+        AdminView adminView = new AdminView();
+        int result = adminService.insertLotOfTravel();
+        if(result>0){
+            adminView.displayMessage("대량 삽입 성공!");
+        }else{
+            adminView.displayMessage("대량 삽입 실패!");
+        }
+
+    }
 }
