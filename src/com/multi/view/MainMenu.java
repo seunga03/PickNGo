@@ -1,10 +1,14 @@
 package com.multi.view;
 
+import com.multi.controller.LikeController;
 import com.multi.controller.SearchController;
 import com.multi.controller.TravelDetailController;
 import com.multi.controller.CommentsController;
 import com.multi.model.dto.CommentsDTO;
+import com.multi.model.dto.LikesDTO;
 import com.multi.model.dto.TravelDTO;
+import com.multi.model.dto.tmddk.User;
+import com.multi.service.UserSession;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -15,6 +19,7 @@ public class MainMenu {
     private SearchController searchController = new SearchController();
     private TravelDetailController travelDetailController = new TravelDetailController();
     private CommentsController commentController = new CommentsController();
+    private LikeController likeController = new LikeController();
 
     private static MyPage myPage = new MyPage();
 
@@ -52,9 +57,9 @@ public class MainMenu {
                     case 3:
                         System.out.println("권역별 조회");
                         searchController.selectByDistrict(inputDistrict());
-                    case 7:
-                        commentController.insertComment(inputComment());
-                        break;
+                  //  case 7:
+                  //      commentController.insertComment(inputComment());
+                  //      break;
                     case 8:
                         commentController.selectAllComment(selectComment());
                         break;
@@ -79,20 +84,39 @@ public class MainMenu {
 
     }
 
-    private CommentsDTO inputComment() {
+    private CommentsDTO inputComment(int no) {
 
         CommentsDTO comment = new CommentsDTO();
 
         System.out.println("댓글을 입력하세요 >>");
-        System.out.println("관광지 일련번호 : ");
-        comment.setNo((long) sc.nextInt());
-        System.out.println("사용자ID 입력 : ");
-        comment.setUser_Id(sc.next());
+        System.out.println("관광지 일련번호 : " + no + "입니다");
+      //  comment.setNo((long) sc.nextInt());
+        comment.setNo((long) no);
+        User me = UserSession.getUser();
+        System.out.println("사용자ID 입력 : " + me.getUserId());
+
+        //comment.setUser_Id(sc.next());
+        comment.setUser_Id(me.getUserId());
         System.out.println("댓글 내용 입력 : ");
         sc.nextLine();
         comment.setContent(sc.nextLine());
 
         return comment;
+    }
+
+    private LikesDTO inputLike(int no) {
+
+        LikesDTO like = new LikesDTO();
+
+        System.out.println("즐겨찾기 관광지 일련번호 : " + no + "입니다");
+
+        like.setNo((long) no);
+        User me = UserSession.getUser();
+        System.out.println("사용자ID 입력 : " + me.getUserId());
+
+        like.setUser_Id(me.getUserId());
+
+        return like;
     }
 
     private long selectComment() {
@@ -203,7 +227,7 @@ public class MainMenu {
                     while (inDetailView) {
                         System.out.println("\n");
                         System.out.println("목록으로 돌아가기: b / 메인으로 돌아가기: h ");
-                        System.out.println("즐겨찾기에 추가: f / 댓글 등록: c ");
+                        System.out.println("즐겨찾기에 추가: f / 댓글 등록: c / 댓글 조회 v");
                         System.out.print("명령어 입력: ");
                         String detailCommand = sc.next();
 
@@ -216,9 +240,13 @@ public class MainMenu {
                                 return;
 
                             case "f":
-
+                                likeController.insertLike(inputLike(travelNo));
+                                break;
                             case "c":
-                                commentController.insertComment(inputComment());
+                                commentController.insertComment(inputComment(travelNo));
+                                break;
+                            case "v":
+                                commentController.selectAllComment((long)travelNo);
                                 break;
                             default:
                                 System.out.println(">> 잘못된 명령어입니다. b, h, f, c 중에서 입력해주세요.");
