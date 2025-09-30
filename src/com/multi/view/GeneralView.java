@@ -75,6 +75,9 @@ public class GeneralView {
         System.out.println("서비스 요청결과  : " + s);
 
     }
+    public void displayError(String message) {
+        System.out.println( message);
+    }
 
     public void loginOrSignup() {
         int choice = 0;
@@ -173,6 +176,7 @@ public class GeneralView {
                                 return;
 
                             case "f":
+
 
                             case "c":
 
