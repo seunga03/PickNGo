@@ -1,8 +1,11 @@
 package com.multi.controller;
 
+import com.multi.model.dto.CommentsDTO;
+import com.multi.model.dto.LikesDTO;
 import com.multi.model.dto.TravelDTO;
 import com.multi.model.dto.tmddk.Like;
 import com.multi.service.LikeService;
+import com.multi.view.MainMenu;
 
 import java.util.ArrayList;
 
@@ -30,4 +33,12 @@ public class LikeController {
         System.out.println("아직 저장한 장소가 없습니다. 장소들을 조회해 저장해 보세요!");
         System.out.println();
     }
+
+    public void insertLike(LikesDTO like) {
+        int result = likeService.insertLike(like);
+        if(result > 0) {
+            new MainMenu().displaySuccess("즐겨찾기등록성공");
+        }
+    }
+
 }
