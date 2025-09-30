@@ -12,6 +12,8 @@ public class MainMenu {
 
     private SearchController searchController = new SearchController();
     private TravelDetailController travelDetailController = new TravelDetailController();
+    private static MyPage myPage = new MyPage();
+
     private static Scanner sc = new Scanner(System.in);
 
     public void mainMenu() {
@@ -40,6 +42,11 @@ public class MainMenu {
                     case 2:
                         System.out.println("검색으로 조회");
                         searchController.selectBySearch(inputSearch());
+                        break;
+                    case 5:
+                        System.out.println("마이페이지로");
+                        /*** 구현 필요 ***/
+                        myPage.myInfo();
                         break;
                     case 9:
                         System.out.println("정말로 끝내시겠습니까??(y/n)");
