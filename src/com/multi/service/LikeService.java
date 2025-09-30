@@ -27,15 +27,22 @@ public class LikeService {
     }
 
     public int insertLike(LikesDTO like) {
-
         Connection conn = getConnection();
-        int result = likeDAO.insertLike(conn,like);
-        if(result > 0 ) {
+
+        // 1. 즐겨찾기가 이미 존재하는지 확인
+        if (likeDAO.isLikeExists(conn, like)) {
+            close(conn);
+            return -1;
+        }
+
+        // 2. 존재하지 않으면 삽입
+        int result = likeDAO.insertLike(conn, like);
+        if (result > 0) {
             commit(conn);
-        }else{
+        } else {
             rollback(conn);
         }
         close(conn);
-        return result;
+        return result; // 성공 시 1, 실패 시 0 반환
     }
 }

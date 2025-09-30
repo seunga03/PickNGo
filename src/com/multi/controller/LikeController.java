@@ -10,8 +10,11 @@ import com.multi.view.MainMenu;
 
 import java.util.ArrayList;
 
+
+
 public class LikeController {
     private LikeService likeService = new LikeService();
+    private GeneralView generalView = new GeneralView();
     public void selectAllLikes(String userId) {
         ArrayList<Like> list =likeService.selectAllLikes(userId);
 
@@ -37,9 +40,12 @@ public class LikeController {
 
     public void insertLike(LikesDTO like) {
         int result = likeService.insertLike(like);
-        if(result > 0) {
-             new GeneralView().displayMessage("즐겨찾기 저장 성공!");
-
+        if (result > 0) {
+            generalView.displayMessage(">> 즐겨찾기에 성공적으로 등록되었습니다.");
+        } else if (result == -1) {
+            generalView.displayError(">> 이미 등록된 즐겨찾기입니다."); // displayError 메소드가 없다면 System.out.println() 사용
+        } else {
+            generalView.displayError(">> 즐겨찾기 등록에 실패했습니다. 다시 시도해주세요.");
         }
     }
 
