@@ -1,5 +1,7 @@
 package com.multi.model.dao;
 
+import com.multi.model.dto.CommentsDTO;
+import com.multi.model.dto.LikesDTO;
 import com.multi.model.dto.TravelDTO;
 import com.multi.model.dto.tmddk.Like;
 
@@ -53,5 +55,27 @@ public class LikeDAO {
             throw new RuntimeException(e);
         }
         return list;
+    }
+
+    public int insertLike(Connection conn, LikesDTO like) {
+        int result = 0;
+        PreparedStatement pstmt = null;
+
+        String sql = prop.getProperty("insertLike");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1,like.getUser_Id());
+            pstmt.setLong(2,like.getNo());
+
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+        }
+        return result;
     }
 }
