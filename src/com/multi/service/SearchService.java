@@ -3,7 +3,6 @@ package com.multi.service;
 import com.multi.model.dao.TravelDAO;
 import com.multi.model.dto.TravelDTO;
 
-import java.lang.reflect.Member;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -24,6 +23,15 @@ public class SearchService {
 
         return list;
 
+    }
+
+    public ArrayList<TravelDTO> selectAll() {
+
+        Connection conn = getConnection();
+        ArrayList<TravelDTO> list = travelDAO.selectAll(conn);
+        close(conn);
+
+        return list;
     }
 
     public TravelDTO showDetail(int no) {
