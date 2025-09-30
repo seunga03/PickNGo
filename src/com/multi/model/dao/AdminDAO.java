@@ -25,7 +25,7 @@ public class AdminDAO {
 
         try {
             prop.load(AdminDAO.class.getResourceAsStream("/adminQuery.properties"));
-            System.out.println(prop);
+//            System.out.println(prop);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

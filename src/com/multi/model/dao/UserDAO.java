@@ -1,6 +1,7 @@
 package com.multi.model.dao;
 
 import com.multi.model.dto.tmddk.User;
+import com.multi.service.UserSession;
 
 import java.io.IOException;
 import java.sql.*;
@@ -15,7 +16,7 @@ public class UserDAO {
     public UserDAO() {
         try {
             prop.load(UserDAO.class.getResourceAsStream("/query.properties"));
-            System.out.println(prop);
+//            System.out.println(prop);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -76,6 +77,50 @@ public class UserDAO {
             pstmt.setString(1, user.getUserId());
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getPassword());
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+        }
+
+        return result;
+    }
+
+    public int editPassword(Connection conn, String newPassword) {
+        int result = 0;
+        PreparedStatement pstmt = null;
+        User me = UserSession.getUser();
+        String sql = prop.getProperty("editPassword");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, newPassword);
+            pstmt.setString(2, me.getUserId());
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+        }
+
+        return result;
+    }
+
+    public int editName(Connection conn, String newName) {
+        int result = 0;
+        PreparedStatement pstmt = null;
+        User me = UserSession.getUser();
+        String sql = prop.getProperty("editName");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, newName);
+            pstmt.setString(2, me.getUserId());
 
             result = pstmt.executeUpdate();
 
