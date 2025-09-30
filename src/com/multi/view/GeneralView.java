@@ -21,18 +21,34 @@ public class GeneralView {
     }
     private static Scanner sc = new Scanner(System.in);
     private User inputUser() {
+
+        String user_id = "";
+        String user_name = "";
+        String user_pw = "";
+        do {
+            System.out.print("아이디(10자 이내): ");
+            user_id = scanner.nextLine().trim();
+            System.out.print("이름(30자 이내): ");
+            user_name = scanner.nextLine().trim();
+            System.out.print("비밀번호(30자 이내): ");
+            user_pw = scanner.next().trim();
+            if (checkIdPwLength(user_id,user_name,user_pw)){
+                break;
+            }
+            System.out.println("==아이디,이름,비번 형식 오류. 다시 입력해주세요");
+        } while (true);
+
         User u = new User();
+        u.setUserId(user_id);
+        u.setName(user_name);
+        u.setPassword(user_pw);
 
-        System.out.print("아이디: ");
-        u.setUserId(scanner.nextLine().trim());
-
-        System.out.print("이름: ");
-        u.setName(scanner.nextLine().trim());
-
-        System.out.print("비밀번호: ");
-        u.setPassword(scanner.nextLine().trim());
 
         return u;
+    }
+
+    private boolean checkIdPwLength(String user_id, String user_name, String user_pw) {
+        return user_id.length() <= 10 && user_name.length() <= 30 && user_pw.length() <= 30;
     }
 
     public void loginView() {
@@ -59,6 +75,7 @@ public class GeneralView {
         System.out.println("서비스 요청결과  : " + s);
 
     }
+
     public void loginOrSignup() {
         int choice = 0;
 
@@ -71,7 +88,7 @@ public class GeneralView {
 
                 choice = Integer.parseInt(scanner.nextLine().trim());
 
-                switch (choice){
+                switch (choice) {
                     case 1 -> generalView.loginView();
                     case 2 -> generalView.signUpView();
                     case 9 -> {
