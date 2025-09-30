@@ -4,9 +4,11 @@ import com.multi.model.dto.tmddk.User;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.Properties;
 
 import static com.multi.common.JDBCConnect.close;
+import static com.multi.service.UserSession.setUser;
 
 public class UserDAO {
     private Properties prop = new Properties();
@@ -21,23 +23,33 @@ public class UserDAO {
     }
 
 
-    public boolean checkGeneral(Connection conn, String userId, String password) {
+    public User checkGeneral(Connection conn, String userId, String password) {
+
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         String sql = prop.getProperty("checkGeneral");
 
         try {
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userId);
             pstmt.setString(2, password);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 // 로그인 성공
-                return true;
+//                setUser();
+                String id = rs.getString("user_id").trim();
+                String name = rs.getString("name");
+                String pw = rs.getString("password");
+                String role = rs.getString("role");
+                LocalDateTime createdAt = rs.getTimestamp("created_at").toLocalDateTime();
+                LocalDateTime updatedAt = rs.getTimestamp("updated_at").toLocalDateTime();
+
+                return new User(id, role, name, pw, createdAt, updatedAt);
             } else {
                 // 로그인 실패
-                return false;
+                return null;
             }
 
         } catch (SQLException e) {
