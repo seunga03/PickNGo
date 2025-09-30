@@ -2,6 +2,7 @@ package com.multi.view;
 
 import com.multi.controller.CommentsController;
 import com.multi.model.dto.CommentsDTO;
+import com.multi.model.dto.TravelDTO;
 
 import java.lang.reflect.Member;
 import java.util.ArrayList;
@@ -80,6 +81,16 @@ public class MainMenu {
         System.out.println("서비스 요청결과  : " + message);
     }
 
+    public void displayTravel(ArrayList<TravelDTO> dto) {
+        System.out.println("조회된 여행지 리스트는 다음과 같습니다.");
 
+        for (TravelDTO t : dto) {
+            System.out.println(t);
+        }
+
+    }
+
+    public void displayNoData() {
+    }
 
 }
