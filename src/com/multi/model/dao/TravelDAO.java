@@ -3,9 +3,13 @@ package com.multi.model.dao;
 import com.multi.model.dto.TravelDTO;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.sql.*;
 
 import static com.multi.common.JDBCConnect.*;
 
@@ -61,6 +65,36 @@ public class TravelDAO {
             close(rs);
             close(pstmt);
 
+        }
+        return list;
+    }
+
+    public ArrayList<TravelDTO> selectAll(Connection conn) {
+        ArrayList<TravelDTO> list = new ArrayList<>();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String sql = prop.getProperty("selectAll");
+        try {
+            TravelDTO t = new TravelDTO();
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                t = new TravelDTO();
+                t.setNo(rs.getLong("no"));
+                t.setDistrict(rs.getString("district"));
+                t.setTitle(rs.getString("title"));
+                t.setDescription(rs.getString("description"));
+                t.setAddress(rs.getString("address"));
+                t.setPhone(rs.getString("phone"));
+//                t.setCreateAt(rs.getTimestamp("create_at").toLocalDateTime());
+//                t.setUpdateAt(rs.getTimestamp("update_at").toLocalDateTime());
+                list.add(t);
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return list;
     }

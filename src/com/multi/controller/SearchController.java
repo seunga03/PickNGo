@@ -24,4 +24,13 @@ public class SearchController {
 
 
     }
+
+    public void selectAll() {
+        MainMenu mainMenu = new MainMenu();
+        ArrayList<TravelDTO> list = searchService.selectAll();
+
+
+            mainMenu.displayTravel(list);
+
+    }
 }
