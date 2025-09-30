@@ -30,7 +30,7 @@ public class MainMenu {
                 System.out.println("3. 권역별 조회");
                 System.out.println("4. 인기순으로 조회");
                 System.out.println("5. 마이페이지");
-               // System.out.println("7. 댓글등록");
+                // System.out.println("7. 댓글등록");
                 System.out.println("8. 댓글조회");
                 System.out.println("9.프로그램 끝내기 \n");
                 System.out.print("번호선택 : ");
@@ -94,9 +94,10 @@ public class MainMenu {
 
         System.out.println("조회할 댓글의 관광지 일련번호를 입력하세요 >>");
         System.out.println("관광지 일련번호 : ");
-        return (long)sc.nextInt();
+        return (long) sc.nextInt();
 
     }
+
     private int inputDistrict() {
 
         System.out.println("수도권:1, 충청권:2, 경상권:3, 전라권:4, 강원권:5, 제주권:6");
@@ -156,25 +157,27 @@ public class MainMenu {
 
             //UI 요소
 
-        int choice = sc.nextInt();
-        switch (choice) {
-            case 1:
-                System.out.println("댓글 추가하기");
-                commentController.insertComment(inputComment());
-                break;    // 댓글 컨트롤러 연결 필요
-            case 2:
-                System.out.println("댓글 조회하기");
-                commentController.selectAllComment(selectComment());
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("댓글 추가하기");
+                    commentController.insertComment(inputComment());
+                    break;    // 댓글 컨트롤러 연결 필요
+                case 2:
+                    System.out.println("댓글 조회하기");
+                    commentController.selectAllComment(selectComment());
                     // 댓글 컨트롤러 연결 필요
-                break;
-            case 5:
-                System.out.println("즐겨찾기에 추가하기");
+                    break;
+                case 5:
+                    System.out.println("즐겨찾기에 추가하기");
                     // 즐겨찾기 컨트롤러 연결 필요
-                break;
-            case 9:
-                System.out.println("조회된 여행지 리스트로 돌아가기");
+                    break;
+                case 9:
+                    System.out.println("조회된 여행지 리스트로 돌아가기");
                     // 댓글 컨트롤러 연결 필요
-                break;
+                    break;
+
+            }
             System.out.println("\n--- Page " + (currentPage + 1) + " of " + totalPages + " ---");
             System.out.print("\n[p]revious, [n]ext, [h]ome | 여행지 상세정보는 번호 입력: ");
 
@@ -210,7 +213,8 @@ public class MainMenu {
                             case "f":
 
                             case "c":
-
+                                commentController.insertComment(inputComment());
+                                break;
                             default:
                                 System.out.println(">> 잘못된 명령어입니다. b, h, f, c 중에서 입력해주세요.");
                                 break;
@@ -263,6 +267,7 @@ public class MainMenu {
 
     }
 
+
     public void displayNoData() {
     }
 
@@ -287,3 +292,4 @@ public class MainMenu {
     }
 
 }
+
