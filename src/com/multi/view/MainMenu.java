@@ -30,6 +30,11 @@ public class MainMenu {
 
                 switch (choice) {
 
+                    case 1:
+                        System.out.println("전체목록 조회");
+                        searchController.selectAll();
+                        break;
+
                     case 2:
                         System.out.println("검색으로 조회");
                         searchController.selectBySearch(inputSearch());
@@ -58,11 +63,71 @@ public class MainMenu {
 
 
     public void displayTravel(ArrayList<TravelDTO> dto) {
-        System.out.println("조회된 여행지 리스트는 다음과 같습니다.");
 
-        for (TravelDTO t : dto) {
-            System.out.println(t);
+        final int PAGE_SIZE = 20;
+        // Math.ceil을 사용하기 위해 double로 형변환하여 정확한 페이지 수 계산
+        int totalPages = (int) Math.ceil((double) dto.size() / PAGE_SIZE);
+        int currentPage = 0;
+
+
+        if (dto == null || dto.isEmpty()) {
+            System.out.println("조회된 여행지 정보가 없습니다.");
+            return;
         }
+        // 페이지네이션 제어 루프
+        while(true){
+            System.out.println("\n\n");
+            System.out.println("조회된 여행지 리스트는 다음과 같습니다.");
+
+            //데이터 슬라이싱 및 표시 로직
+
+            int startIndex = currentPage * PAGE_SIZE;
+            int endIndex = Math.min(startIndex + PAGE_SIZE, dto.size());
+            for (int i = startIndex; i < endIndex; i++) {
+
+                System.out.println(dto.get(i));
+
+            }
+
+            //UI 요소
+
+            System.out.println("\n--- Page " + (currentPage + 1) + " of " + totalPages + " ---");
+            System.out.print("\n[p]revious, [n]ext, [h]ome: ");
+
+            String command = sc.next();
+            switch (command.toLowerCase()) {
+                case "p":
+                case "P":
+                    if (currentPage > 0) {
+                        currentPage--;
+                    } else {
+                        System.out.println("첫 페이지 입니다.");
+                    }
+                    break;
+                case "n":
+                case "N":
+                    if (currentPage < totalPages - 1) {
+                        currentPage++;
+                    } else {
+                        System.out.println("마지막 페이지 입니다.");
+                    }
+                    break;
+                case "h":
+                case "H":
+                    System.out.println("메인 메뉴로 돌아갑니다.");
+                    return; // 루프를 탈출하고 메소드를 종료하여 제어권을 반환
+                default:
+                    System.out.println("잘못된 명령어입니다. p, n, h 중에서 입력해주세요.");
+                    break;
+            }
+
+
+
+        }
+
+
+
+
 
     }
 

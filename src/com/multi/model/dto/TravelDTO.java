@@ -97,7 +97,7 @@ public class TravelDTO {
                 "no=" + no +
                 ", title='" + title + '\'' +
                 ", district='" + district + '\'' +
-                ", description='" + description + '\'' +
+//                ", description='" + description + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", createAt=" + createAt +

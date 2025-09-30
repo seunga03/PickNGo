@@ -24,4 +24,13 @@ public class SearchService {
         return list;
 
     }
+
+    public ArrayList<TravelDTO> selectAll() {
+
+        Connection conn = getConnection();
+        ArrayList<TravelDTO> list = travelDAO.selectAll(conn);
+        close(conn);
+
+        return list;
+    }
 }
