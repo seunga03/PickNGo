@@ -99,9 +99,9 @@ public class TravelDTO {
                 ", district='" + district + '\'' +
 //                ", description='" + description + '\'' +
                 ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", createAt=" + createAt +
-                ", updateAt=" + updateAt +
+//                ", phone='" + phone + '\'' +
+//                ", createAt=" + createAt +
+//                ", updateAt=" + updateAt +
                 '}';
     }
 }

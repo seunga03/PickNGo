@@ -33,4 +33,14 @@ public class SearchService {
 
         return list;
     }
+
+    public TravelDTO showDetail(int no) {
+
+        Connection conn = getConnection();
+        TravelDTO t = travelDAO.showDetail(conn, no);
+        close(conn);
+
+        return t;
+    }
+
 }
