@@ -7,8 +7,12 @@ import com.multi.controller.CommentsController;
 import com.multi.model.dto.CommentsDTO;
 import com.multi.model.dto.LikesDTO;
 import com.multi.model.dto.TravelDTO;
+
+import com.multi.view.InputView.*;
+
 import com.multi.model.dto.tmddk.User;
 import com.multi.service.UserSession;
+
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -17,6 +21,8 @@ import java.util.Scanner;
 public class MainMenu {
 
     private SearchController searchController = new SearchController();
+
+    private InputView inputView = new InputView();
     private TravelDetailController travelDetailController = new TravelDetailController();
 
     private CommentsController commentController = new CommentsController();
@@ -54,14 +60,22 @@ public class MainMenu {
 
                     case 2:
                         System.out.println("검색으로 조회");
-                        searchController.selectBySearch(inputSearch());
+                        searchController.selectBySearch(inputView.inputSearch());
                         break;
                     case 3:
                         System.out.println("권역별 조회");
+
+                        searchController.selectByDistrict(inputView.inputDistrict());
+
+                    case 7:
+                        commentController.insertComment(inputComment());
+                        break;
+
                         searchController.selectByDistrict(inputDistrict());
                   //  case 7:
                   //      commentController.insertComment(inputComment());
                   //      break;
+
                     case 8:
                         commentController.selectAllComment(selectComment());
                         break;
@@ -129,59 +143,14 @@ public class MainMenu {
 
     }
 
-    private int inputDistrict() {
-
-        System.out.println("수도권:1, 충청권:2, 경상권:3, 전라권:4, 강원권:5, 제주권:6");
-        System.out.print("조회를 원하는 권역 번호를 입력하세요: ");
-        while (true) {
-            try {
-                int districtNo = sc.nextInt();
-                if (districtNo >= 1 && districtNo <= 6) {
-                    return districtNo;  // 유효한 입력인 경우 반환
-                } else {
-                    System.out.print("잘못된 입력입니다. 1에서 6 사이의 숫자를 입력하세요: ");
-                }
-            } catch (InputMismatchException e) {
-                System.out.print("유효한 숫자를 입력해 주세요: ");
-                sc.next();  // 잘못된 입력을 버퍼에서 제거
-            }
-        }
-
-    }
-
-    private String inputSearch() {
-        System.out.print("검색어를 입력하세요: ");
-        return sc.next();  // 사용자로부터 입력 받기
-    }
 
     public void displaySuccess(String message) {
         System.out.println("서비스 요청결과  : " + message);
     }
 
-    public void displayTravel(ArrayList<TravelDTO> dto) {
-
-        final int PAGE_SIZE = 20;
-        // Math.ceil을 사용하기 위해 double로 형변환하여 정확한 페이지 수 계산
-        int totalPages = (int) Math.ceil((double) dto.size() / PAGE_SIZE);
-        int currentPage = 0;
 
 
-        if (dto == null || dto.isEmpty()) {
-            System.out.println("조회된 여행지 정보가 없습니다.");
-            return;
-        }
-        // 페이지네이션 제어 루프
-        while (true) {
-            System.out.println("\n\n");
-            System.out.println("조회된 여행지 리스트는 다음과 같습니다.");
 
-            //데이터 슬라이싱 및 표시 로직
-
-            int startIndex = currentPage * PAGE_SIZE;
-            int endIndex = Math.min(startIndex + PAGE_SIZE, dto.size());
-            for (int i = startIndex; i < endIndex; i++) {
-
-                System.out.println(dto.get(i));
 
             }
 
@@ -257,74 +226,6 @@ public class MainMenu {
                         }
 
 
-                    }
-
-
-                } else {
-                    System.out.println(">> 해당 번호의 여행지가 존재하지 않습니다. 목록에서 번호를 확인해주세요.");
-                }
-                // 상세보기가 끝나면 루프가 계속되어 현재 페이지 목록을 다시 보여줍니다
-
-
-            } catch (NumberFormatException e) {
-
-                switch (command.toLowerCase()) {
-                    case "p":
-                    case "P":
-                        if (currentPage > 0) {
-                            currentPage--;
-                        } else {
-                            System.out.println(">> 첫 페이지 입니다.");
-                        }
-                        break;
-                    case "n":
-                    case "N":
-                        if (currentPage < totalPages - 1) {
-                            currentPage++;
-                        } else {
-                            System.out.println(">> 마지막 페이지 입니다.");
-                        }
-                        break;
-                    case "h":
-                    case "H":
-                        System.out.println(">> 메인 메뉴로 돌아갑니다.");
-                        return; // 루프를 탈출하고 메소드를 종료하여 제어권을 반환
-                    default:
-                        System.out.println(">> 잘못된 명령어입니다. p, n, h 중에서 입력해주세요.");
-                        break;
-                }
-
-            }
-
-
-        }
-
-
-    }
-
-
-    public void displayNoData() {
-    }
-
-    public static void displayTravelDetail(TravelDTO t) {
-        System.out.println("조회된 여행지는 다음과 같습니다.");
-        System.out.println();
-
-        System.out.print("(no: " + t.getNo() + ") ");
-        System.out.println("[" + t.getDistrict() + "] " + t.getTitle());
-        System.out.println("전화번호: " + t.getPhone());
-        System.out.println("주소: " + t.getAddress());
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
-        printWithWrap(t.getDescription(), 92);
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
-    }
-
-    public static void printWithWrap(String text, int lineLength) {
-        for (int i = 0; i < text.length(); i += lineLength) {
-            int end = Math.min(i + lineLength, text.length());
-            System.out.println(text.substring(i, end));
-        }
-    }
 
 }
 
