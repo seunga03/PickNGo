@@ -79,7 +79,7 @@ public class Travel {
 
     @Override
     public String toString() {
-        return "Travel{" +
+        return
                 "no=" + no +
                 ", district='" + district + '\'' +
                 ", titel='" + title + '\'' +
