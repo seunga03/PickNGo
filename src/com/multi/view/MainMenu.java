@@ -18,8 +18,10 @@ public class MainMenu {
 
     private SearchController searchController = new SearchController();
     private TravelDetailController travelDetailController = new TravelDetailController();
+
     private CommentsController commentController = new CommentsController();
     private LikeController likeController = new LikeController();
+
 
     private static MyPage myPage = new MyPage();
 
@@ -104,7 +106,7 @@ public class MainMenu {
         return comment;
     }
 
-    private LikesDTO inputLike(int no) {
+    private LikesDTO insertLike(int no) {
 
         LikesDTO like = new LikesDTO();
 
@@ -240,7 +242,7 @@ public class MainMenu {
                                 return;
 
                             case "f":
-                                likeController.insertLike(inputLike(travelNo));
+                                likeController.insertLike(insertLike(travelNo));
                                 break;
                             case "c":
                                 commentController.insertComment(inputComment(travelNo));
@@ -304,7 +306,7 @@ public class MainMenu {
     public void displayNoData() {
     }
 
-    public void displayTravelDetail(TravelDTO t) {
+    public static void displayTravelDetail(TravelDTO t) {
         System.out.println("조회된 여행지는 다음과 같습니다.");
         System.out.println();
 
