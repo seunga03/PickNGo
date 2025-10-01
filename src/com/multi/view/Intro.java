@@ -39,6 +39,8 @@ public class Intro {
                 // 예외 처리
                 System.out.println("유효한 숫자를 입력해 주세요.");
                 scanner.nextLine();  // 잘못된 입력을 버퍼에서 제거
+            }catch(NumberFormatException e){
+                System.out.println("유효한 숫자를 입력해주세요");
             }
         } while (true);
 

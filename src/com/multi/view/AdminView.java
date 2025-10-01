@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static com.multi.view.MainMenu.displayTravelDetail;
+import static com.multi.view.GeneralView.displayTravelDetail;
+
 
 public class AdminView {
 
@@ -52,7 +53,7 @@ public class AdminView {
                     """);
 
             while (true) {
-                displayMessageLn("번호를 입력해주세요.");
+                displayMessage("번호를 입력해주세요.:");
                 try {
                     choice = sc.nextInt();
                     break;
@@ -116,7 +117,9 @@ public class AdminView {
             mainMenu();
             return null;
         }
-        travel.setNo(inputNo());
+        System.out.print("관광지 일련번호를 입력하세요.:");
+        int no = sc.nextInt();
+        travel.setNo(no);
         displayMessage("새로운 권역을 입력하세요.:");
         String district = sc.next();
         sc.nextLine();
@@ -212,7 +215,7 @@ public class AdminView {
                                 return;
 
                             default:
-                                System.out.println(">> 잘못된 명령어입니다. b, h, f, c 중에서 입력해주세요.");
+                                System.out.println(">> 잘못된 명령어입니다. b, h 중에서 입력해주세요.");
                                 break;
 
                         }
