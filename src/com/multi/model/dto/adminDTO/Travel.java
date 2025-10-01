@@ -83,7 +83,7 @@ public class Travel {
                 "no=" + no +
                 ", district='" + district + '\'' +
                 ", titel='" + title + '\'' +
-                ", description='" + description + '\'' +
+//                ", description='" + description + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", created_at=" + created_at +
