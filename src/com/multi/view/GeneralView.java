@@ -76,6 +76,7 @@ public class GeneralView {
 
     }
     public void displayError(String message) {
+
         System.out.println( message);
     }
 
@@ -200,7 +201,6 @@ public class GeneralView {
 
                 switch (command.toLowerCase()) {
                     case "p":
-                    case "P":
                         if (currentPage > 0) {
                             currentPage--;
                         } else {
@@ -208,7 +208,6 @@ public class GeneralView {
                         }
                         break;
                     case "n":
-                    case "N":
                         if (currentPage < totalPages - 1) {
                             currentPage++;
                         } else {
@@ -216,7 +215,6 @@ public class GeneralView {
                         }
                         break;
                     case "h":
-                    case "H":
                         System.out.println(">> 메인 메뉴로 돌아갑니다.");
                         return; // 루프를 탈출하고 메소드를 종료하여 제어권을 반환
                     default:

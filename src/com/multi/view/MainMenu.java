@@ -53,6 +53,7 @@ public class MainMenu {
 
                 switch (choice) {
 
+
                     case 1:
                         System.out.println("전체목록 조회");
                         searchController.selectAll();
