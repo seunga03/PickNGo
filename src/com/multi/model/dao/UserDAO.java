@@ -132,4 +132,35 @@ public class UserDAO {
 
         return result;
     }
+
+    public User findById(Connection conn, String userId) {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = prop.getProperty("findById");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userId);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String id = rs.getString("user_id").trim();
+                String name = rs.getString("name");
+                String pw = rs.getString("password");
+                String role = rs.getString("role");
+                Timestamp cts = rs.getTimestamp("created_at");
+                Timestamp uts = rs.getTimestamp("updated_at");
+                LocalDateTime createdAt = cts != null ? cts.toLocalDateTime() : null;
+                LocalDateTime updatedAt = uts != null ? uts.toLocalDateTime() : null;
+                return new User(id, role, name, pw, createdAt, updatedAt);
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(rs);
+            close(pstmt);
+        }
+    }
+
 }

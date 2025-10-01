@@ -2,6 +2,7 @@ package com.multi.controller;
 
 import com.multi.model.dto.CommentsDTO;
 import com.multi.service.CommentsService;
+import com.multi.view.DisplayView;
 import com.multi.view.GeneralView;
 import com.multi.view.MainMenu;
 
@@ -9,13 +10,14 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class CommentsController {
+    private static DisplayView displayView = new DisplayView();
 
     private CommentsService commentService = new CommentsService();
     private GeneralView generalView = new GeneralView();
     public void insertComment(CommentsDTO comment) {
         int result = commentService.insertComment(comment);
         if(result > 0) {
-            generalView.displayMessage("댓글등록성공");
+            displayView.displayMessage("댓글등록성공");
         }
     }
 
