@@ -3,20 +3,19 @@ package com.multi.view;
 import com.multi.controller.AdminController;
 import com.multi.model.dto.TravelDTO;
 import com.multi.model.dto.adminDTO.Travel;
-import com.multi.model.dto.dto;
 import com.multi.service.SearchService;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static com.multi.view.GeneralView.displayTravelDetail;
 
 
 public class AdminView {
 
     Scanner sc = new Scanner(System.in);
     AdminController adminController = new AdminController();
+    private static DisplayView displayView = new DisplayView();
 
     public void loginView() {
         String admin_id = "";
@@ -195,7 +194,7 @@ public class AdminView {
 
                 if (selectedTravel != null) {
                     // 상세 정보를 출력하는 메소드 호출
-                    displayTravelDetail(selectedTravel);
+                    displayView.displayTravelDetail(selectedTravel);
 
 
                     boolean inDetailView = true;

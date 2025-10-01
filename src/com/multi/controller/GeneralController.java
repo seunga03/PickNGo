@@ -2,9 +2,10 @@ package com.multi.controller;
 
 import com.multi.model.dto.tmddk.User;
 import com.multi.service.GeneralService;
-import com.multi.view.GeneralView;
+import com.multi.view.DisplayView;
 
 public class GeneralController {
+    private static DisplayView displayView = new DisplayView();
 
     private GeneralService generalService = new GeneralService();
 
@@ -13,12 +14,11 @@ public class GeneralController {
     }
 
     public void signUp(User user) {
-        GeneralView generalView = new GeneralView();
 
         int result = generalService.signUp(user);
 
         if (result > 0) {
-            generalView.displayMessage("회원가입성공");
+            displayView.displayMessage("회원가입성공");
         }
     }
 }
