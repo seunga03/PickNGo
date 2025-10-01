@@ -17,7 +17,7 @@ public class CommentsDAO {
 
         try {
             prop.load(CommentsDAO.class.getResourceAsStream("/query.properties"));
-            System.out.println(prop);
+//            System.out.println(prop);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

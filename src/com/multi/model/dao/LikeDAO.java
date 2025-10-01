@@ -64,6 +64,7 @@ public class LikeDAO {
         String sql = prop.getProperty("insertLike");
 
         try {
+            System.out.println("inserLike sql : " + sql + "");
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1,like.getUser_Id());
@@ -82,7 +83,7 @@ public class LikeDAO {
     public boolean isLikeExists(Connection conn, LikesDTO like) {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql = "SELECT COUNT(*) FROM LIKES WHERE USER_ID = ? AND _NO = ?";
+        String sql = "SELECT COUNT(*) FROM LIKES WHERE USER_ID = ? AND NO = ?";
 
         try {
             pstmt = conn.prepareStatement(sql);
