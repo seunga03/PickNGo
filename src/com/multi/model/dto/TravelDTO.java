@@ -93,15 +93,14 @@ public class TravelDTO {
 
     @Override
     public String toString() {
-        return "TravelDTO{" +
-                "no=" + no +
-                ", title='" + title + '\'' +
-                ", district='" + district + '\'' +
+        return  no +"번"+" | "+
+                "여행지:" + title + " | " +
+                "권역:" + district
 //                ", description='" + description + '\'' +
-                ", address='" + address + '\'' +
+//                ", address='" + address + '\'' +
 //                ", phone='" + phone + '\'' +
 //                ", createAt=" + createAt +
 //                ", updateAt=" + updateAt +
-                '}';
+                ;
     }
 }

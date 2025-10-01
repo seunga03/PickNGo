@@ -42,13 +42,14 @@ public class AdminView {
         do {
             System.out.println();
             System.out.println("""
-                    =관리자 메인메뉴=======
+                    =======관리자 메인메뉴=======
                     1.관광지 조회
-                    2.csv 파일에 추가된 관광지들 대량 등록 (resources에 travel.csv 업로드해주세요.)
+                    2.csv 파일에 추가된 관광지들 대량 등록
+                    (resources에 travel.csv 업로드해주세요.)
                     3.관광지 수정
                     4.관광지 삭제
                     9.프로그램 종료
-                    ====================
+                    ============================
                     """);
 
             while (true) {

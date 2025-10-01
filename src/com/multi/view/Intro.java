@@ -15,9 +15,9 @@ public class Intro {
 
         do {
             try {
-                System.out.println("\n1.일반 사용자");
+                System.out.println("\n1. 일반 사용자");
                 System.out.println("2. 관리자");
-                System.out.println("9.프로그램 끝내기\n");
+                System.out.println("9. 프로그램 끝내기\n");
                 System.out.print("번호선택 : ");
 
                 choice = Integer.parseInt(scanner.nextLine().trim());

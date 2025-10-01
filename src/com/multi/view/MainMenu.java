@@ -69,8 +69,6 @@ public class MainMenu {
                         searchController.selectByDistrict(inputView.inputDistrict());
 
 
-
-
                     case 8:
                         commentController.selectAllComment(selectComment());
                         break;
