@@ -22,7 +22,12 @@ public class LikeService {
 
         return list;
     }
-
+    public ArrayList<TravelDTO> selectLikedTravelsByUserId(String userId) {
+        Connection conn = getConnection();
+        ArrayList<TravelDTO> list = likeDAO.selectLikedTravelsByUserId(conn, userId);
+        close(conn);
+        return list;
+    }
     public int insertLike(LikesDTO like) {
         Connection conn = getConnection();
 
