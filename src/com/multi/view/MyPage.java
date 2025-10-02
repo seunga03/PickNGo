@@ -2,9 +2,7 @@ package com.multi.view;
 
 import com.multi.controller.EditProfileController;
 import com.multi.controller.LikeController;
-import com.multi.model.dao.UserDAO;
 import com.multi.model.dto.tmddk.User;
-import com.multi.service.GeneralService;
 import com.multi.service.UserSession;
 
 import java.util.InputMismatchException;
@@ -17,7 +15,6 @@ public class MyPage {
 
     LikeController likeController = new LikeController();
     EditProfileView editProfileView = new EditProfileView(new EditProfileController(), this);
-    GeneralService generalService = new GeneralService();
 
 
 
@@ -46,6 +43,7 @@ public class MyPage {
                 System.out.print("번호선택 : ");
 
                 choice = sc.nextInt();
+                sc.nextLine();
 
                 switch (choice) {
                     case 1:

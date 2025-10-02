@@ -51,8 +51,6 @@ public class CommentsDTO {
 
     @Override
     public String toString() {
-        return "CommentsDTO [No=" + No + ", user_Id=" + user_Id + ", content="
-                + content + ", created_at="
-                + created_at + ", updated_at=" + updated_at + "]";
+        return "@" + user_Id + "(" + updated_at + ") " + content;
     }
 }

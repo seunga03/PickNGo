@@ -63,12 +63,6 @@ public class Like {
 
     @Override
     public String toString() {
-        return "Like{" +
-                "seq=" + seq +
-                ", userId='" + userId + '\'' +
-                ", no='" + no + '\'' +
-                ", createAt=" + createAt +
-                ", updateAt=" + updateAt +
-                '}';
+        return seq + ". [" + no + "] " + updateAt ;
     }
 }

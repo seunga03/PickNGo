@@ -1,8 +1,6 @@
 package com.multi.view;
 
 import com.multi.controller.EditProfileController;
-import com.multi.model.dto.tmddk.User;
-import com.multi.service.UserSession;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

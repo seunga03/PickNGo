@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.util.Properties;
 
 import static com.multi.common.JDBCConnect.close;
-import static com.multi.service.UserSession.setUser;
 
 public class UserDAO {
     private Properties prop = new Properties();
@@ -163,4 +162,27 @@ public class UserDAO {
         }
     }
 
+
+    public boolean existsById(Connection conn, String userId) {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = prop.getProperty("existsById");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userId);
+            try {
+                rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    return rs.getInt(1) > 0; // 이미 존재하면 true
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

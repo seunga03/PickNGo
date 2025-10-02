@@ -3,7 +3,6 @@ package com.multi.service;
 
 import com.multi.model.dao.AdminDAO;
 import com.multi.model.dto.adminDTO.Travel;
-import com.multi.view.AdminView;
 
 import java.sql.Connection;
 import java.util.ArrayList;

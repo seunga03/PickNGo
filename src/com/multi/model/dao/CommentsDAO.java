@@ -53,7 +53,7 @@ public class CommentsDAO {
         ResultSet rs = null;
 
         String sql = prop.getProperty("selectAllComment");
-        System.out.println("sql : " + sql + "");
+//        System.out.println("sql : " + sql + "");
         System.out.println("no : " + no + "");
         try {
             pstmt = conn.prepareStatement(sql);

@@ -2,10 +2,9 @@ package com.multi.view;
 
 import com.multi.controller.GeneralController;
 import com.multi.controller.TravelDetailController;
-import com.multi.model.dto.TravelDTO;
+import com.multi.model.dao.UserDAO;
 import com.multi.model.dto.tmddk.User;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,10 +15,11 @@ public class GeneralView {
     private static GeneralView generalView = new GeneralView();
     private static MainMenu mainMenu = new MainMenu();
     private TravelDetailController travelDetailController = new TravelDetailController();
+    private UserDAO userDAO = new UserDAO();
+
     public void signUpView() {
         generalController.signUp(inputUser());
     }
-    private static Scanner sc = new Scanner(System.in);
     private User inputUser() {
 
         String user_id = "";
@@ -28,6 +28,12 @@ public class GeneralView {
         do {
             System.out.print("아이디(10자 이내): ");
             user_id = scanner.nextLine().trim();
+
+            if (generalController.existsById(user_id)) {
+                System.out.println("==이미 사용 중인 아이디입니다. 다른 아이디를 입력하세요.==");
+                continue;
+            }
+
             System.out.print("이름(30자 이내): ");
             user_name = scanner.nextLine().trim();
             System.out.print("비밀번호(30자 이내): ");
@@ -36,6 +42,7 @@ public class GeneralView {
                 break;
             }
             System.out.println("==아이디,이름,비번 형식 오류. 다시 입력해주세요");
+            scanner.nextLine();
         } while (true);
 
         User u = new User();
@@ -95,7 +102,7 @@ public class GeneralView {
                     case 9 -> {
                         System.out.println("정말로 끝내시겠습니까? (y/n)");
                         if ('y' == scanner.next().toLowerCase().charAt(0)) {
-                            return;  // 프로그램 종료
+                            System.exit(0);  // 프로그램 종료
                         }
                     }
                     default -> System.out.println("번호를 잘못 입력하였습니다.");
