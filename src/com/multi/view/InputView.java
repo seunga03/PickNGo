@@ -14,6 +14,7 @@ public class InputView {
         while (true) {
             try {
                 int districtNo = sc.nextInt();
+                sc.nextLine();
                 if (districtNo >= 1 && districtNo <= 6) {
                     return districtNo;  // 유효한 입력인 경우 반환
                 } else {

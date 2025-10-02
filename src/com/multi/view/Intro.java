@@ -24,12 +24,11 @@ public class Intro {
 
                 switch (choice){
                     case 1 -> generalView.loginOrSignup();
-                    // 광호님 코드 추가시 주석 해제
-                     case 2 -> new AdminView().loginView();
+                    case 2 -> new AdminView().loginView();
                     case 9 -> {
                         System.out.println("정말로 끝내시겠습니까? (y/n)");
                         if ('y' == scanner.next().toLowerCase().charAt(0)) {
-                            return;  // 프로그램 종료
+                            System.exit(0);  // 프로그램 종료
                         }
                     }
                     default -> System.out.println("번호를 잘못 입력하였습니다.");

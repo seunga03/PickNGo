@@ -3,8 +3,6 @@ package com.multi.controller;
 import com.multi.model.dto.TravelDTO;
 import com.multi.service.SearchService;
 import com.multi.view.DisplayView;
-import com.multi.view.GeneralView;
-import com.multi.view.MainMenu;
 
 import java.util.ArrayList;
 
@@ -26,7 +24,6 @@ public class SearchController {
     }
 
     public void selectAll() {
-        MainMenu mainMenu = new MainMenu();
         ArrayList<TravelDTO> list = searchService.selectAll();
 
 
@@ -35,7 +32,6 @@ public class SearchController {
     }
 
     public void selectByDistrict(int district_no) {
-        MainMenu mainMenu = new MainMenu();
         ArrayList<TravelDTO> list = searchService.selectByDistrict(district_no);
 
             displayView.displayTravel(list);

@@ -38,4 +38,16 @@ public class GeneralService {
         close(conn);
         return result;
     }
+
+    public boolean existsById(String userId) {
+        Connection conn = getConnection(); // common에 만든 거 가져오는 것으로 대체
+        boolean result =  userDAO.existsById(conn, userId);
+        if (result == true) {
+            commit(conn);
+        } else {
+            rollback(conn);
+        }
+        close(conn);
+        return result;
+    }
 }

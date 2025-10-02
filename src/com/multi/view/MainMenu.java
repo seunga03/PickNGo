@@ -6,15 +6,10 @@ import com.multi.controller.TravelDetailController;
 import com.multi.controller.CommentsController;
 import com.multi.model.dto.CommentsDTO;
 import com.multi.model.dto.LikesDTO;
-import com.multi.model.dto.TravelDTO;
-
-import com.multi.view.InputView.*;
-
 import com.multi.model.dto.tmddk.User;
 import com.multi.service.UserSession;
 
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -50,7 +45,7 @@ public class MainMenu {
                 System.out.print("번호선택 : ");
 
                 choice = sc.nextInt();  // 사용자로부터 입력 받기
-
+                sc.nextLine();
                 switch (choice) {
 
 
@@ -79,7 +74,7 @@ public class MainMenu {
                     case 9:
                         System.out.println("정말로 끝내시겠습니까??(y/n)");
                         if ('y' == sc.next().toLowerCase().charAt(0)) {
-                            return;  // 프로그램 종료
+                            System.exit(0);  // 프로그램 종료
 
                         }
                 }
@@ -130,8 +125,7 @@ public class MainMenu {
 
     private long selectComment() {
 
-        System.out.println("조회할 댓글의 관광지 일련번호를 입력하세요 >>");
-        System.out.println("관광지 일련번호 : ");
+        System.out.print("조회할 댓글의 관광지 일련번호를 입력하세요 : ");
         return (long) sc.nextInt();
 
     }

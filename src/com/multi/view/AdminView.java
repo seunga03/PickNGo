@@ -56,6 +56,7 @@ public class AdminView {
                 displayMessage("번호를 입력해주세요.:");
                 try {
                     choice = sc.nextInt();
+                    sc.nextLine();
                     break;
                 } catch (InputMismatchException e) {
                     displayMessageLn("유효한 번호를 입력해주세요.");
@@ -99,6 +100,7 @@ public class AdminView {
             System.out.print("관광지 일련번호를 입력하세요:");
             try {
                 no = sc.nextInt();
+                sc.nextLine();
                 break;
             } catch (InputMismatchException e) {
                 displayMessageLn("유효한 일련번호를 입력해주세요.");
@@ -119,6 +121,7 @@ public class AdminView {
         }
         System.out.print("관광지 일련번호를 입력하세요.:");
         int no = sc.nextInt();
+        sc.nextLine();
         travel.setNo(no);
         displayMessage("새로운 권역을 입력하세요.:");
         String district = sc.next();

@@ -22,7 +22,7 @@ public class DisplayView {
 
     public void displayMessage(String s) {
 
-        System.out.println("서비스 요청결과  : " + s);
+        System.out.println(">> 서비스 요청 성공! " + s);
 
     }
     public void displayError(String message) {
@@ -201,11 +201,11 @@ public class DisplayView {
 
         LikesDTO like = new LikesDTO();
 
-        System.out.println("즐겨찾기 관광지 일련번호 : " + no + "입니다");
+//        System.out.println("즐겨찾기 관광지 일련번호 : " + no + "입니다");
 
         like.setNo((long) no);
         User me = UserSession.getUser();
-        System.out.println("사용자ID 입력 : " + me.getUserId());
+//        System.out.println("사용자ID 입력 : " + me.getUserId());
 
         like.setUser_Id(me.getUserId());
 

@@ -21,4 +21,8 @@ public class GeneralController {
             displayView.displayMessage("회원가입성공");
         }
     }
+
+    public boolean existsById(String userId) {
+        return generalService.existsById(userId);
+    }
 }

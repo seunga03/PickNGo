@@ -1,8 +1,6 @@
 package com.multi.model.dao;
 
-import com.multi.model.dto.CommentsDTO;
 import com.multi.model.dto.LikesDTO;
-import com.multi.model.dto.TravelDTO;
 import com.multi.model.dto.tmddk.Like;
 
 import java.io.IOException;
@@ -64,7 +62,7 @@ public class LikeDAO {
         String sql = prop.getProperty("insertLike");
 
         try {
-            System.out.println("inserLike sql : " + sql + "");
+//            System.out.println("inserLike sql : " + sql + "");
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1,like.getUser_Id());
