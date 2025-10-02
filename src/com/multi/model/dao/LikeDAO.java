@@ -1,6 +1,7 @@
 package com.multi.model.dao;
 
 import com.multi.model.dto.LikesDTO;
+import com.multi.model.dto.TravelDTO;
 import com.multi.model.dto.tmddk.Like;
 
 import java.io.IOException;

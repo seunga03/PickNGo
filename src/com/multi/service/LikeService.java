@@ -2,6 +2,7 @@ package com.multi.service;
 
 import com.multi.model.dao.LikeDAO;
 import com.multi.model.dto.LikesDTO;
+import com.multi.model.dto.TravelDTO;
 import com.multi.model.dto.tmddk.Like;
 
 import java.sql.Connection;

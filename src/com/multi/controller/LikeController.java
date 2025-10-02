@@ -1,6 +1,7 @@
 package com.multi.controller;
 
 import com.multi.model.dto.LikesDTO;
+import com.multi.model.dto.TravelDTO;
 import com.multi.model.dto.tmddk.Like;
 import com.multi.service.LikeService;
 import com.multi.view.DisplayView;
