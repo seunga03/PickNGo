@@ -1,6 +1,7 @@
 package com.multi.model.dao;
 
 import com.multi.model.dto.LikesDTO;
+import com.multi.model.dto.TravelDTO;
 import com.multi.model.dto.tmddk.Like;
 
 import java.io.IOException;
@@ -100,5 +101,34 @@ public class LikeDAO {
         }
         return false;
     }
+
+    public ArrayList<TravelDTO> selectLikedTravelsByUserId(Connection conn, String userId) {
+        ArrayList<TravelDTO> list = new ArrayList<>();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String sql = prop.getProperty("selectLikedTravelsByUserId");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userId);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                TravelDTO travel = new TravelDTO();
+                travel.setNo(rs.getLong("no"));
+                travel.setTitle(rs.getString("title"));
+                travel.setDistrict(rs.getString("district"));
+                list.add(travel);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(rs);
+            close(pstmt);
+        }
+        return list;
+    }
+
 
 }

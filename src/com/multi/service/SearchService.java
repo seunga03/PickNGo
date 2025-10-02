@@ -51,4 +51,12 @@ public class SearchService {
 
         return list;
     }
+
+    public ArrayList<TravelDTO> selectByLikes(){
+        Connection conn = getConnection();
+        ArrayList<TravelDTO> list = travelDAO.selectByLikes(conn);
+        close(conn);
+
+        return list;
+    }
 }

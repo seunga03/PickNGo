@@ -2,6 +2,7 @@ package com.multi.service;
 
 import com.multi.model.dao.LikeDAO;
 import com.multi.model.dto.LikesDTO;
+import com.multi.model.dto.TravelDTO;
 import com.multi.model.dto.tmddk.Like;
 
 import java.sql.Connection;
@@ -22,7 +23,12 @@ public class LikeService {
 
         return list;
     }
-
+    public ArrayList<TravelDTO> selectLikedTravelsByUserId(String userId) {
+        Connection conn = getConnection();
+        ArrayList<TravelDTO> list = likeDAO.selectLikedTravelsByUserId(conn, userId);
+        close(conn);
+        return list;
+    }
     public int insertLike(LikesDTO like) {
         Connection conn = getConnection();
 

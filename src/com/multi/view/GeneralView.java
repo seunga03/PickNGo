@@ -38,6 +38,7 @@ public class GeneralView {
             user_name = scanner.nextLine().trim();
             System.out.print("비밀번호(30자 이내): ");
             user_pw = scanner.next().trim();
+            scanner.nextLine(); // 버퍼 비우기
             if (checkIdPwLength(user_id,user_name,user_pw)){
                 break;
             }
@@ -91,7 +92,7 @@ public class GeneralView {
             try {
                 System.out.println("\n1.로그인");
                 System.out.println("2. 회원가입");
-                System.out.println("9.프로그램 끝내기\n");
+                System.out.println("9. 프로그램 끝내기\n");
                 System.out.print("번호선택 : ");
 
                 choice = Integer.parseInt(scanner.nextLine().trim());
