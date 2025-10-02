@@ -10,11 +10,14 @@ public class TravelDTO {
     private String description;
     private String address;
     private String phone;
+    private int likeCount;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 
 
-    public TravelDTO() {}
+
+    public TravelDTO() {
+    }
 
     public TravelDTO(long no, String district, String title, String description, String address, String phone, LocalDateTime createAt, LocalDateTime updateAt) {
         this.no = no;
@@ -75,6 +78,10 @@ public class TravelDTO {
         this.phone = phone;
     }
 
+    public int getLikeCount() {return likeCount;}
+
+    public void setLikeCount(int likeCount) {this.likeCount = likeCount;}
+
     public LocalDateTime getCreateAt() {
         return createAt;
     }
@@ -91,9 +98,11 @@ public class TravelDTO {
         this.updateAt = updateAt;
     }
 
+
+
     @Override
     public String toString() {
-        return  no +"번"+" | "+
+        return no + "번" + " | " +
                 "여행지:" + title + " | " +
                 "권역:" + district
 //                ", description='" + description + '\'' +

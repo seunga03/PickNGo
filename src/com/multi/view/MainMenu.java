@@ -67,7 +67,11 @@ public class MainMenu {
                         System.out.println("권역별 조회");
 
                         searchController.selectByDistrict(inputView.inputDistrict());
-
+                        break;
+                    case 4:
+                        System.out.println("인기순으로 조회");
+                        searchController.selectByLikes();
+                        break;
 
                     case 8:
                         commentController.selectAllComment(selectComment());

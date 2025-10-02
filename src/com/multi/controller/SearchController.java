@@ -40,4 +40,12 @@ public class SearchController {
 
             displayView.displayTravel(list);
     }
+
+    public void selectByLikes() {
+        MainMenu mainMenu = new MainMenu();
+        ArrayList<TravelDTO> list = searchService.selectByLikes();
+
+            displayView.displayTravel(list);
+
+    }
 }

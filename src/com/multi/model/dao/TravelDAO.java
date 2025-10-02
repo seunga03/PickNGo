@@ -89,6 +89,8 @@ public class TravelDAO {
                 t.setDescription(rs.getString("description"));
                 t.setAddress(rs.getString("address"));
                 t.setPhone(rs.getString("phone"));
+
+                t.setLikeCount(rs.getInt("like_count"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -171,4 +173,38 @@ public class TravelDAO {
         return list;
 
     }
+
+
+    public ArrayList<TravelDTO> selectByLikes(Connection conn) {
+        ArrayList<TravelDTO> list = new ArrayList<>();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String sql = prop.getProperty("selectByLikes");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                TravelDTO t = new TravelDTO();
+                t.setNo(rs.getLong("no"));
+                t.setDistrict(rs.getString("district"));
+                t.setTitle(rs.getString("title"));
+                t.setDescription(rs.getString("description"));
+                t.setAddress(rs.getString("address"));
+                t.setPhone(rs.getString("phone"));
+                t.setLikeCount(rs.getInt("like_count"));
+
+                list.add(t);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(rs);
+            close(pstmt);
+        }
+        return list;
+    }
+
 }

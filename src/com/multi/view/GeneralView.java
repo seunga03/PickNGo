@@ -32,6 +32,7 @@ public class GeneralView {
             user_name = scanner.nextLine().trim();
             System.out.print("비밀번호(30자 이내): ");
             user_pw = scanner.next().trim();
+            scanner.nextLine(); // 버퍼 비우기
             if (checkIdPwLength(user_id,user_name,user_pw)){
                 break;
             }

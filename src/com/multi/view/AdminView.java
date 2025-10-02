@@ -33,6 +33,7 @@ public class AdminView {
     }
 
     private boolean checkIdPwLength(String adminId, String adminPw) {
+        System.out.println("아이디 비밀번호 형식 오류!");
         return adminId.length() <= 10 && adminPw.length() <= 30;
     }
 

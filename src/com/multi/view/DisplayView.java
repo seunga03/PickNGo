@@ -17,7 +17,7 @@ public class DisplayView {
     private TravelDetailController travelDetailController = new TravelDetailController();
     private LikeController likeController = new LikeController();
     private CommentsController commentController = new CommentsController();
-
+    private InputView inputView = new InputView();
 
 
     public void displayMessage(String s) {
@@ -164,6 +164,7 @@ public class DisplayView {
         System.out.println("[" + t.getDistrict() + "] " + t.getTitle());
         System.out.println("전화번호: " + t.getPhone());
         System.out.println("주소: " + t.getAddress());
+        System.out.println("즐겨찾기 저장 수: " + t.getLikeCount());
         System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
         printWithWrap(t.getDescription(), 92);
         System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
@@ -201,15 +202,23 @@ public class DisplayView {
 
         LikesDTO like = new LikesDTO();
 
-        System.out.println("즐겨찾기 관광지 일련번호 : " + no + "입니다");
+        System.out.println("즐겨찾기 관광지 일련번호 : " + no + " 입니다");
 
         like.setNo((long) no);
         User me = UserSession.getUser();
-        System.out.println("사용자ID 입력 : " + me.getUserId());
+        System.out.println("사용자ID : " + me.getUserId());
 
         like.setUser_Id(me.getUserId());
 
         return like;
     }
 
+    public void displayLikedTravels(ArrayList<TravelDTO> list) {
+
+        for (int i = 0; i < list.size(); i++) {
+            TravelDTO travel = list.get(i);
+            // 예시: [1] 서울의 궁궐 나들이 (수도권)
+            System.out.println("  " + (i + 1) + ". " + travel.getTitle() + " (" + travel.getDistrict() + ")");
+        }
+    }
 }
